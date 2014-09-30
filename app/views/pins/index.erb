@@ -32,6 +32,39 @@
 
 		window.onload = loadScript;
 
+		function placeMarker(location) {
+		  var marker = new google.maps.Marker({
+		      position: location, 
+		      map: map
+		  });
+
+
+		  map.setCenter(location);
+
+
+		// Display Pin Ajax get Request
+		  $.ajax({
+		     url: 'index.erb',
+		     data: location,
+		     succes: function(){
+		       alert('marker was added');
+		     },
+		     error: function(){
+		       alert('marker wasn\'t added');
+		       marker.setMap(null);
+		     }
+  		});
+
+		// Create Pin Ajax post request
+		google.maps.event.addListener(map, 'click', function(event) {
+	  		$.ajax({
+	  			type: "POST",
+	  			url: "index.erb", 
+	  			data: location
+	  		})	
+		});  
+}
+
     </script>
   </head>
   <body>
