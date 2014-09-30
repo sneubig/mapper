@@ -21,7 +21,7 @@ class PinsController < ApplicationController
 	      respond_to do |format|
 	        format.html { render :new }
 	        format.json { render status: 400, nothing: true }
-	      end
+	      end 
 	    end
   	end
 end
